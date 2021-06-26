@@ -1,7 +1,7 @@
 //Declaring the variables
 var boy,boyimg,boyimg1;
 var path,pathimg;
-var obj1,obj2,obj3,obj4;
+var obj1,obj2;
 var virus,virusimg1,virusimg2;
 var sani,saniimg;
 var spray;
@@ -73,12 +73,8 @@ function setup() {
   //creating the edges for the player
   obj1=createSprite(600,155,1200,10);
   obj1.visible=false;
-  obj2=createSprite(600,395,1200,5);
+  obj2=createSprite(600,380,1200,5);
   obj2.visible=false;
-  obj3=createSprite(10,320,10,150);
-  obj3.visible=false;
-  obj4=createSprite(1190,320,10,150);
-  obj4.visible=false;
 
   gameover=createSprite(600,200,10,10);
   gameover.addImage("gameoverimg",gameoverimg);
@@ -91,13 +87,11 @@ function setup() {
 
 function draw() {
   background("white"); 
-  //music.loop();
+  //music.play();
   path.velocityX=-5;
 
   obj1.depth=path.depth+1;
   obj2.depth=path.depth+1;
-  obj3.depth=path.depth+1;
-  obj4.depth=path.depth+1;
 
   if(gameState=PLAY){
 
@@ -185,11 +179,10 @@ function draw() {
       gameState=END;
     }
 
-    boy.bounceOff(obj1);
-    boy.bounceOff(obj2);
-    boy.bounceOff(obj3);
-    boy.bounceOff(obj4);
-
+    if(boy.isTouching(obj1)||boy.isTouching(obj2)){
+      boy.bounceOff(obj1);
+      boy.bounceOff(obj2);
+    }
     drawSprites();
   }
   if(gameState===END){
@@ -214,7 +207,7 @@ function draw() {
     vaccineGroup.destroyEach();
     virusGroup.destroyEach();
 
-    if(keyCode==118){
+    if(keyDown("v")){
       ambulance=createSprite(1300,50);
       ambulance.addImage("ambulanceimg",ambulanceimg);
       ambulance.y=boy.y+10;
@@ -250,7 +243,7 @@ function spawnvirus(){
 }
 
 function spawnvaccine(){
-    if(frameCount%500===0){
+    if(frameCount%1000===0){
     vaccine=createSprite(1300,50);
     vaccine.addImage("vaccineimg",vaccineimg);
     vaccine.y=Math.round(random(300,380));
@@ -267,11 +260,13 @@ function reset(){
 
   boy.addAnimation("boyimg",boyimg);
   boy.changeAnimation("boyimg");
+  boy.setCollider("rectangle",10,0,30,120);
 
   path.velocityX=-5;
 
   gameover.visible=false;
   ambulance.visible=false;
   kills=0;
-  lives=5;
+  lives=3;
+  
 }
