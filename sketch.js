@@ -126,7 +126,7 @@ function draw() {
 
     fill("black");
     textSize(30);
-    text("Kills: "+kills,1000,60);
+    text("Covid Kills: "+kills,980,60);
 
     fill("black");
     textSize(30);
