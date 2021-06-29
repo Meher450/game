@@ -176,7 +176,7 @@ function draw() {
       sani.addImage("saniimg",saniimg);
       sani.scale=0.3;
       sani.lifetime=0;
-      sani.debug=true;
+      sani.debug=false;
       sani.setCollider("rectangle",80,50,400,200);
       sani.depth=boy.depth+1;
       spray.play();
