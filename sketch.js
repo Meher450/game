@@ -6,7 +6,7 @@ var virus,virus1,virusimg1,virusimg2;
 var sani,saniimg;
 var spray;
 var flag=0;
-var music,hit,happy,horn,lost,scream; 
+var hit,happy,horn,lost,scream; 
 
 var kills=0;
 var lives=3;
@@ -35,7 +35,6 @@ vaccineimg=loadImage("images/vaccine.png");
 ambulanceimg=loadImage("images/ambulance.png");
 
 spray=loadSound("sounds/spray.mp3");
-music=loadSound("sounds/bgm.mp3");
 hit=loadSound("sounds/hit.wav");
 happy=loadSound("sounds/happy.wav");
 horn=loadSound("sounds/siren.mp3");
@@ -93,7 +92,7 @@ function setup() {
 
 function draw() {
   background("white"); 
-  //music.loop("");
+
   sani.destroy();
 
   path.velocityX=-(5+kills/10);
